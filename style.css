@@ -1,1 +1,582 @@
-/* TODO */
+/* ----------------------------------------------------------------------------------------------------------------- */
+/* Globals */
+:root {
+    --white: white;
+    --black: #121212;  /* Same exact color from the drawio wireframe */
+    --line: #6a6a6a;   /* Subtle separator color with contrast against the dark background */
+
+    /* Section background colors */
+    --profile-background: #1b2433;
+    --papers-background: #182b2b;
+    --gallery-background: #411B24;
+    --interests-background: #211d2b;
+    --blog-background: var(--black);
+    --footer-background: var(--black);
+    --text: var(--white);
+    --link: lightblue;
+
+    /* Sizes */
+    --width: 1200px;
+    --nav-large-space: 190px;  /* top-nav: spacing between groups of links */
+    --nav-small-space: 60px;   /* top-nav: spacing between links within same group */
+
+    /* About/Education separator position */
+    --profile-divider-left: 55%;
+
+    /* Separator top cutoff */
+    --separator-top: 30px;
+    /* Separator bottom cutoff */
+    --separator-bottom: 30px;
+
+    /* Footer spacing */
+    --footer-side-gap: 50px;
+    --footer-bottom-gap: 20px;
+}
+
+/* ----------------------------------------------------------------------------------------------------------------- */
+/* General */
+
+/* Include padding and border in all element's total width and height */
+* {
+    box-sizing: border-box;
+}
+
+/* Styles for entire page */
+body {
+    margin: 0;  /* Force no margin for entire page (there's a default margin if this isn't done) */
+    background: var(--black);
+    color: var(--text);  /* Page text color */
+    font-family: Helvetica;  /* Same exact font from the drawio wireframe */
+    font-size: 18px;
+}
+
+/* Center fixed-width content */
+.wrap {
+    width: min(var(--width), 100%);
+    margin: 0 auto;
+}
+
+/* Links */
+a {
+    color: var(--text);
+    text-decoration: none;  /* Remove underlines */
+}
+a:hover {
+    color: var(--link);  /* Change link color on hover */
+}
+
+/* Text */
+h2 {
+    font-size: 28px;
+    font-weight: 400;
+}
+
+/* Re-usable separator styling - vertical divider on desktop */
+.separator {
+    position: absolute;
+    top: var(--separator-top);
+    bottom: var(--separator-bottom);
+    border-left: 1px solid var(--line);
+
+    /* No vertical divider on mobile */
+    /* @media only screen and (max-width: 500px) {
+        display: none;
+    } */
+
+}
+
+/* Re-usable separator styling - horizontal divider on mobile */
+@media only screen and (max-width: 500px) {
+    /* There's definitely a better way to do this; this just widens the old "vertical divider" */
+    .separator {
+        position: static;
+        width: calc(100% - 56px);
+        height: 0;
+        margin: 0 auto;
+        border: 0;
+        border-top: 1px solid var(--line);
+    }
+}
+
+/* Image placeholder */
+.image-placeholder {
+    display: block;
+    width: 100%;
+    height: 172px;
+    object-fit: cover;
+}
+
+/* ----------------------------------------------------------------------------------------------------------------- */
+/* Hero section */
+.hero {
+    position: relative;
+    height: 600px;  /* Hardcoded for now. Ideally somehow stay proportional to the width */
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-bottom: 0;
+    background: var(--black);  /* Background color if image doesn't load */
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),  /* Have to do this way to darken the image without darkening the entire hero section */
+        url("images/Albert_Einstein_sticks_his_tongue.jpg");
+    background-position: center;  /* Keep the image centered */
+    background-size: cover;  /* Cover the complete hero area with the image */
+}
+
+/* Hero text */
+.hero-center {
+    position: absolute;
+    z-index: 1;  /* Overlap the background */
+    top: 253px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+.hero-center h1 {
+    margin: 0 0 24px;
+    font-size: 40px;
+}
+.hero-center p {
+    margin: 0;
+}
+.hero-center span {
+    display: inline-block;
+    margin: 0 16px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Hero - mobile */
+@media only screen and (max-width: 500px) {
+    .hero {
+        height: auto;
+        min-height: 500px;
+    }
+    .hero-center {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: auto;
+        padding: 140px 20px 160px;
+    }
+    .hero-center h1 {
+        font-size: 28px;
+    }
+    .hero-center p {
+        display: grid; gap: 8px;
+    }
+}
+
+/* ----------------------------------------------------------------------------------------------------------------- */
+/* Top navbar */
+.top-nav {
+    position: relative;
+    z-index: 1;  /* Overlap the background */
+    height: auto;
+    padding: 19px 5% 0;  /* More responsive than Assignment 3 */
+    text-align: center;
+    font-size: 0;  /* Remove default whitespace gaps between inline elements */
+}
+.nav-links {  /* Overall now more responsive than Assignment 3 */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    column-gap: clamp(12px, 3vw, 60px);
+    row-gap: 8px;
+}
+.top-nav a {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+}
+.nav-links a:nth-child(2),
+.nav-links a:nth-child(6) {
+    /* Space + group the links in a specific way */
+    padding-left: clamp(24px, 8vw, 130px);  /* More responsive than Assignment 3 */
+}
+.nav-links .icon {
+    display: none;
+}
+
+/* Top navbar - mobile */
+@media only screen and (max-width: 500px) {
+    .top-nav {
+        height: auto;
+        padding: 14px 20px;
+        text-align: left;
+    }
+    .nav-links {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0;
+        padding-top: 12px;
+    }
+    .nav-links a:not(:first-child):not(.icon) {
+        display: none;
+    }
+    .nav-links a:nth-child(2),
+    .nav-links a:nth-child(6) {
+        /* Don't space + group the links in a specific way on mobile */
+        margin-left: 0;
+    }
+    .nav-links .icon {
+        font-size: 14px;
+        position: absolute;
+        top: 18px;
+        right: 20px;
+        display: block;
+        width: max-content;
+        padding: 8px 12px;
+        border-bottom: 0;
+        cursor: pointer;
+    }
+    .top-nav.responsive .nav-links a {
+        display: block;
+    }
+    .top-nav.responsive .nav-links a:not(:first-child):not(.icon) {
+        text-align: center;
+    }
+    .nav-links a {
+        margin-left: 0;
+        padding: 9px 0;
+        border-bottom: 1px solid var(--line);
+    }
+    .nav-links a:first-child {
+        border-bottom: 0;
+        text-align: left;
+    }
+    .top-nav.responsive .nav-links a:first-child {
+        border-bottom: 1px solid var(--line);
+    }
+}
+
+/* ----------------------------------------------------------------------------------------------------------------- */
+/* Profile section (About/Education) */
+.profile-band {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: var(--profile-background);
+}
+.profile-column {
+    padding: 78px 75px 35px 150px;
+}
+.profile-column h2 {
+    margin: 0 0 25px;
+}
+.profile-column p {
+    max-width: 410px;
+    margin: 0 0 10px;
+    font-size: 18px;
+}
+.profile-column h3 {
+    margin: 0 0 4px;
+    font-size: 20px;
+}
+.profile-divider {
+    left: var(--profile-divider-left);
+}
+.education-column {
+    padding-left: 105px;
+}
+.more-papers a {
+    color: var(--link);
+    text-decoration: underline;
+}
+
+/* Custom image - tabler contract icon */
+.published-paper-image {
+    display: block;
+    width: 150px;
+    height: 150px;
+    margin: auto;
+    object-fit: contain;
+}
+
+/* Profile section (About/Education) - mobile */
+@media only screen and (max-width: 500px) {
+    .profile-band {
+        height: auto;
+        grid-template-columns: 1fr;
+    }
+    .profile-column {
+        height: auto;
+        padding: 45px 28px;
+    }
+}
+
+/* ----------------------------------------------------------------------------------------------------------------- */
+/* Published Papers and Image Collection section (shared styling but only used in these sections) */
+
+/* Content - Published Papers and Image Collection section */
+.content-section {
+    padding: 70px 75px 88px;
+}
+#papers {
+    background: var(--papers-background);
+}
+#gallery {
+    background: var(--gallery-background);
+}
+.section-title {
+    margin: 0 0 46px;
+    text-align: center;
+}
+
+/* Card styling  - Published Papers and Image Collection section */
+.card-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+    margin: 0 -5px;
+}
+.work-card {
+    min-width: 0;
+    padding: 0 20px;
+}
+.work-card p {
+    margin: 0 0 7px;
+    font-size: 18px;
+    text-align: center;
+}
+.work-card h3 {
+    margin: 18px 0 12px;
+    font-size: 20px;
+    text-align: center;
+}
+.work-card a {
+    display: block;
+    margin-bottom: 20px;
+    color: var(--link);
+    text-decoration: underline;
+}
+.more-images a {
+    color: var(--link);
+    text-decoration: underline;
+}
+
+/* Custom image */
+.image-collection-image {
+    display: block;
+    width: 200px;
+    height: 200px;
+    margin: auto;
+    object-fit: contain;
+}
+
+/* Published Papers and Image Collection section - mobile */
+@media only screen and (max-width: 500px) {
+    .card-row {
+        row-gap: 30px;
+        grid-template-columns: 1fr;
+    }
+    .content-section {
+        padding: 45px 28px 55px;
+    }
+}
+
+/* ----------------------------------------------------------------------------------------------------------------- */
+/* Blog section */
+.blogs-section {
+    padding-bottom: 82px;
+    background: var(--blog-background);
+    border-bottom: 0;
+}
+.blog-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: 0 85px;
+}
+.blog-form {
+    display: grid;
+    gap: 12px;
+    max-width: 700px;
+    margin: 0 auto 45px;
+}
+.blog-form label {
+    font-size: 18px;
+}
+.blog-form textarea {
+    width: 100%;
+    padding: 12px;
+    color: var(--text);
+    background: var(--black);
+    border: 1px solid var(--line);
+    font: inherit;
+    resize: vertical;
+}
+.blog-form button {
+    width: max-content;
+    padding: 10px 18px;
+    color: var(--text);
+    background: var(--black);
+    border: 1px solid var(--line);
+    font: inherit;
+    cursor: pointer;
+}
+.blog-card {
+    min-width: 0;
+    padding: 20px 30px;
+    border: 1px solid var(--line);
+    background: #181818;
+}
+.blog-card a {
+    color: var(--link);
+    text-decoration: underline;
+}
+.blog-card p {
+    margin: 0 0 7px;
+    font-size: 18px;
+}
+.blog-card p:last-child {
+    margin-bottom: 0;
+}
+.blog-card h3 {
+    margin: 0 0 12px;
+    font-size: 20px;
+}
+.blog-image {
+    height: 190px;
+}
+
+/* Blog section - mobile */
+@media only screen and (max-width: 500px) {
+    .blog-row {
+        row-gap: 30px;
+        margin: 0;
+        grid-template-columns: 1fr;
+    }
+    .blog-card {
+        padding: 20px;
+    }
+}
+
+/* ----------------------------------------------------------------------------------------------------------------- */
+/* Interests section (Gamedev, Music, Dance) */
+.interests {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    background: var(--interests-background);
+}
+.interest-column {
+    padding: 65px 75px 40px;
+}
+.interest-column a {
+    color: var(--link);
+    text-decoration: underline;
+}
+.interest-column p {
+    margin: 0 0 7px;
+    font-size: 18px;
+}
+.first-interest-divider {
+    left: 33.333%;
+    border-left-color: var(--line);
+    border-top-color: var(--line);
+}
+.second-interest-divider {
+    left: 66.666%;
+    border-left-color: var(--line);
+    border-top-color: var(--line);
+}
+.interest-column h2 {
+    margin: 0 0 38px;
+    text-align: center;
+}
+.interest-image {
+    width: 200px;
+    height: 300px;
+    margin: 0 auto 30px;
+}
+
+/* Interests section (Gamedev, Music, Dance) - mobile */
+@media only screen and (max-width: 500px) {
+    .interests {
+        height: auto;
+        grid-template-columns: 1fr;
+    }
+    .interest-column {
+        padding: 45px 28px;
+    }
+    .interest-column + .interest-column {
+        border-top: 1px solid var(--line);
+    }
+}
+
+/* ----------------------------------------------------------------------------------------------------------------- */
+/* Footer */
+.site-footer {
+    display: flex;
+    justify-content: space-between;
+    width: calc(100% - (2 * var(--footer-side-gap)));  /* More responsive than Assignment 3 - todo: give a max width */
+    height: 57px;
+    margin: 0 auto var(--footer-bottom-gap);
+    padding: 22px 25px 0;
+    font-size: 14px;
+    border: 1px solid var(--line);
+    background: var(--footer-background);
+}
+.site-footer nav {
+    display: flex;
+}
+.site-footer nav a {
+    margin-left: clamp(16px, 4vw, 58px);  /* More responsive than Assignment 3 */
+}
+
+/* Footer - mobile */
+@media only screen and (max-width: 500px) {
+    body {
+        font-size: 16px;
+    }
+    h2 {
+        font-size: 24px;
+    }
+    .hero-center h1 {
+        font-size: 32px;
+    }
+    .hero-center span,
+    .top-nav a,
+    .profile-column p,
+    .work-card p,
+    .blog-form label,
+    .blog-card p,
+    .interest-column p {
+        font-size: 16px;
+    }
+    .profile-column h3,
+    .work-card h3,
+    .blog-card h3 {
+        font-size: 18px;
+    }
+    .site-footer {
+        display: grid;
+        grid-template-rows: auto auto;
+        justify-content: center;
+        justify-items: center;
+        gap: 18px;
+        width: calc(100% - 40px);
+        height: auto;
+        padding-bottom: 22px;
+    }
+    .site-footer nav {
+        display: grid;
+        grid-row: 1;
+        gap: 0;
+        justify-items: center;
+        width: 100%;
+        max-width: 300px;
+    }
+    .site-footer > span {
+        grid-row: 2;
+        text-align: center;
+    }
+    .site-footer nav a {
+        margin-left: 0;
+        width: 100%;
+        padding: 9px 0;
+        border-bottom: 1px solid var(--line);
+        text-align: center;
+    }
+}

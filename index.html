@@ -9,7 +9,208 @@ Midterm Project
 Author: Erl Abayao
 
 Sources:
-  - Image of Einstein: https://en.wikipedia.org/wiki/File:Albert_Einstein_sticks_his_tongue.jpg
+  - Images of Einstein, and information about his life and his publications: https://en.wikipedia.org/wiki/Albert_Einstein
+  - Website Font Size Guidelines: https://www.learnui.design/blog/mobile-desktop-website-font-size-guidelines.html
+  - Tabler icons: https://tabler.io/icons
+  - Color palette inspiration: https://coolors.co/1b2433-182b2b-211d2b-121212-411b24
+  - Canvas modules:
+    - "LECTURE-02 Introduction to HTML.pdf"
+    - "html_ref_code"
+    - "css_examples"
+    - "JS-01-Basic"
+    - "JS-02-DOM"
+    - My "CSS Grid" homework submission
+    - My "Assignment 2" and "Assignment 3" submissions
+    - Responsive top nav (source link from assignment 3): https://www.w3schools.com/howto/howto_js_topnav_responsive.asp
 -->
 
-<!-- TODO -->
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Website metadata -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <title>Albert Einstein | Portfolio</title>
+</head>
+
+<body>
+
+<!--The "hero" section -->
+<section class="hero" id="home">
+    <!-- Top navigation links -->
+    <header>
+        <nav class="top-nav" id="myTopnav">
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#education">Education</a>
+                <a href="#papers">Papers</a>
+                <a href="#gallery">Image Collection</a>
+                <a href="#music">Music</a>
+                <a href="#science">Science</a>
+                <a href="#philosophy">Philosophy</a>
+                <a href="#blog">Blog</a>
+                <a href="#" class="icon">&#9776;</a>  <!-- "&#9776;" is hamburger menu icon -->
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero section's center text -->
+    <div class="hero-center">
+        <h1>Albert Einstein</h1>
+        <p>
+            <span>Physicist</span>
+            <span>Nobel Prize Winner</span>
+            <span>Relativity</span>
+            <span>Science</span>
+        </p>
+    </div>
+
+</section>
+
+<main>
+
+<!-- Profile section (About and Education) -->
+<section class="profile-band wrap">
+
+    <!-- About section -->
+    <article id="about" class="profile-column">
+        <h2>About</h2>
+        <p>
+            German-born theoretical physicist best known for developing the theory of relativity.
+            <br><br>
+            My mass-energy equivalence formula E = mc^2, which arises from special relativity, has been called "the world's most famous equation".
+            <br><br>
+            Received the 1921 Nobel Prize in Physics for my services to theoretical physics, and
+            for my discovery of the law of the photoelectric effect.
+        </p>
+    </article>
+
+    <!-- Vertical divider -->
+    <span class="separator profile-divider"></span>
+
+    <!-- Education section -->
+    <article id="education" class="profile-column education-column">
+        <h2>Education</h2>
+        <h3>University of Zurich</h3>
+        <p>PhD, 1905</p>
+        <br>
+        <h3>Swiss federal polytechnic school</h3>
+        <p>Teaching diploma, 1900</p>
+    </article>
+
+</section>
+
+<!-- Published papers section -->
+<section id="papers" class="content-section wrap">
+    <h2 class="section-title">Published Papers</h2>
+
+    <!-- CSS uses JS for the paper cards -->
+    <div class="card-row" id="paper-cards"></div>
+
+    <!-- Link to view more papers -->
+    <div class="more-papers">
+        <p> Throughout my life, I published hundreds of books and articles. Above are just a few. </p>
+        <p> View more of my publications <a href="https://en.wikipedia.org/wiki/Albert_Einstein#Publications">here</a>. </p>
+    </div>
+</section>
+
+<!-- Image collection section -->
+<section id="gallery" class="content-section wrap">
+    <h2 class="section-title">Image Collection</h2>
+
+    <!-- CSS uses JS for the image cards -->
+    <div class="card-row" id="image-cards"></div>
+
+    <!-- Link to view more images -->
+    <div class="more-images">
+        <br>
+        <p> I have been photographed many times throughout my life. Above are just a few images. </p>
+        <p> View more images of me <a href="https://commons.wikimedia.org/wiki/Category:Portrait_photographs_of_Albert_Einstein">here</a>. </p>
+        <p> View more images of my family and my life <a href="https://albert.ias.edu/collections/62ddcbfc-6779-4e29-bdd3-e3218f058082">here</a>. </p>
+    </div>
+</section>
+
+<!-- Interests section -->
+<section id="interests" class="interests wrap">
+
+    <!-- Music section -->
+    <article id="music" class="interest-column">
+        <h2>Music</h2>
+        <img class="interest-image image-placeholder" src="images/Einstein_playing_the_violin_1927_Wanda_von_Debschitz-Kunowski_Albert_Einstein_beim_Geigenspiel_1927.jpg" alt="Einstein playing the violin, 1927">
+        <p>If I were not a physicist, I would probably be a musician.</p>
+        <br>
+        <p>
+            Learn more about my love of music <a href="https://en.wikipedia.org/wiki/Albert_Einstein#Love_of_music">here</a>.
+        </p>
+    </article>
+
+    <!-- Vertical divider -->
+    <span class="separator profile-divider first-interest-divider"></span>
+
+    <!-- Science section -->
+    <article id="science" class="interest-column">
+        <h2>Science</h2>
+        <img class="interest-image image-placeholder"
+            src="images/Albert_Einstein_writing_on_a_blackboard_in_Pasadena_(1931).jpg" alt="Albert Einstein">
+        <p>
+            When I was five and sick in bed, my father brought me a compass. This sparked my lifelong fascination with electromagnetism.
+        </p>
+        <br>
+        <p>
+            Learn more about my scientific career <a href="https://en.wikipedia.org/wiki/Albert_Einstein#Scientific_career">here</a>.
+        </p>
+    </article>
+
+    <!-- Vertical divider -->
+    <span class="separator profile-divider second-interest-divider"></span>
+
+    <!-- Philosophy section -->
+    <article id="philosophy" class="interest-column">
+        <h2>Philosophy</h2>
+        <img class="interest-image image-placeholder"
+            src="images/C._R._Macauley_-_Einstein_takes_up_the_sword,_circa_1933.jpg" alt="Albert Einstein">
+        <p>
+            Without 'ethical culture' there is no salvation for humanity.
+        </p>
+        <br>
+        <p>
+            Learn more about my religious and philosophical views <a href="https://en.wikipedia.org/wiki/Albert_Einstein#Religious_and_philosophical_views">here</a>.
+        </p>
+    </article>
+
+</section>
+
+<!-- Blog section -->
+<section id="blog" class="content-section blogs-section wrap">
+    <h2 class="section-title">Einstein's Blog</h2>
+    <div class="blog-form">
+        <label for="blog-text">Write a blog post:</label>
+        <textarea id="blog-text" rows="6"></textarea>
+        <button id="post-blog" type="button">Post</button>
+    </div>
+    <div class="blog-row" id="blog-posts">
+        <article class="blog-card">
+            <h3>New Blog Post</h3>
+            <p>This is my first blog post. Hope you enjoy my future blog posts!</p>
+        </article>
+    </div>
+</section>
+
+</main>
+
+<!-- Footer -->
+<footer class="site-footer wrap">
+    <span>&copy; 2026 Albert Einstein All Rights Reserved</span>
+    <nav>
+        <a href="https://en.wikipedia.org/wiki/Albert_Einstein">Wikipedia</a>
+        <a href="#papers">Papers</a>
+        <a href="#blog">Blog</a>
+    </nav>
+</footer>
+
+</body>
+</html>
